@@ -103,4 +103,4 @@ Stack: Python, OpenFOAM v2412 (Docker), scikit-learn, trimesh, SciPy, OpenEvolve
 
 ---
 
-*Muhammad Abdullah Imran · Mechanical Engineering, CSULB · part of a portfolio of optimization projects (airfoil, bridge truss, bluff body, heat sink, 3D car body) built on the same OpenEvolve pattern.*
+*Muhammad Abdullah Imran · Mechanical Engineering, CSULB · part of a portfolio of optimization projects (airfoil, bluff body, 3D car body) built on the same OpenEvolve pattern.*
