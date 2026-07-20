@@ -1,0 +1,2 @@
+run_id,nose_frac,nose_power,tail_frac,backlight_deg,boattail_deg,frontal_area_m2,stl_file,Cd,Cl,drag_N,lift_N
+run_000,0.29871,3.49086,0.23571,15.68805,18.31764,0.10484,geometries/run_000.stl,0.12227,-0.09445,7.0666,-5.4585

@@ -1,0 +1,45 @@
+# config.yaml — OpenEvolve config for surrogate-based drag minimization.
+# Same pattern as your previous projects. If any key errors on your
+# OpenEvolve version, copy your working car-body config and swap in the
+# system_message below.
+
+max_iterations: 200
+checkpoint_interval: 20
+diff_based_evolution: false     # tiny evolve block -> full rewrites
+
+llm:
+  primary_model: "gemini-2.5-flash"
+  api_base: "https://generativelanguage.googleapis.com/v1beta/openai/"
+  temperature: 0.4
+
+prompt:
+  system_message: |
+    You are optimizing the shape of a streamlined ground-vehicle body to
+    MINIMIZE aerodynamic drag (Cd), predicted by a machine-learning
+    surrogate trained on 120 OpenFOAM RANS simulations.
+
+    You may ONLY change the numeric values of these 5 variables, and each
+    must stay inside its bounds:
+        nose_frac      in [0.15, 0.35]   nose length fraction
+        nose_power     in [1.5, 4.0]     nose bluntness (higher = blunter)
+        tail_frac      in [0.15, 0.40]   tail length fraction
+        backlight_deg  in [5.0, 30.0]    roof slant angle at the tail
+        boattail_deg   in [0.0, 20.0]    side taper angle at the tail
+
+    Physics hints: drag is dominated by the wake behind the tail base;
+    longer tails and stronger boat-tailing shrink the base area. The
+    scoring penalizes shapes in regions where the surrogate is uncertain,
+    so extreme corner values may not help.
+
+    OUTPUT RULES — STRICT:
+    - Output ONLY the Python assignments, one per line.
+    - Plain numbers only. NO units, NO comments, NO markdown fences,
+      NO explanations, NO imports, NO other code.
+
+database:
+  population_size: 60
+  num_islands: 3
+
+evaluator:
+  timeout: 60
+  parallel_evaluations: 2

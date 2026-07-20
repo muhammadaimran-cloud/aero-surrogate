@@ -1,0 +1,23 @@
+# bulky / regenerable — never commit
+geometries/
+cases/
+openevolve_output/
+surrogate.joblib
+*.stl
+demo_body.stl
+
+# CFD raw output
+cfd_raw/
+
+# local state
+.simscale_project_id
+.results_mesh_level
+__pycache__/
+*.pyc
+.DS_Store
+
+# working files
+*.docx
+node_modules/
+report_build.js
+page-*.jpg
