@@ -1,7 +1,8 @@
-numpy
-scipy
-trimesh
-pandas
-scikit-learn
-joblib
-matplotlib
+numpy~=1.26
+scipy~=1.13
+pandas~=2.2
+scikit-learn~=1.4
+joblib~=1.4
+matplotlib~=3.9
+trimesh~=4.4
+openevolve

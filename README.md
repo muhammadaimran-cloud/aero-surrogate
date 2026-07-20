@@ -2,7 +2,7 @@
 
 **120 automated OpenFOAM simulations → Gaussian Process surrogate (R² = 0.98) → evolutionary optimization → CFD-verified result.**
 
-The optimizer found a shape with **Cd = 0.047** — 64% lower drag than the baseline and **20% lower than any design in the training data** — and a blind CFD run confirmed the surrogate's prediction within its own stated uncertainty.
+The optimizer found a shape with **Cd = 0.047** — 64% lower drag than the mid-range seed design and **20% lower than any design in the training data** — and a blind CFD run confirmed the surrogate's prediction within its own stated uncertainty.
 
 <p align="center">
   <img src="figures/optimized.png" width="360" alt="Optimized geometry">
@@ -56,6 +56,16 @@ blind CFD validation — predicted Cd 0.0493 ± 0.0057, CFD gave 0.0470 ✓
 - **Uncertainty-penalized optimization.** The GPR reports its own confidence; the evaluator scores candidates by −(Cd + σ), so the optimizer can't exploit regions the CFD never sampled.
 - **The physics checks out.** Permutation importance ranks boat-tail angle and tail length as dominant for drag — consistent with wake physics of ground vehicles — and the optimizer avoided the steep-backlight regime associated with the Ahmed-body drag crisis without being told about it.
 
+## Limitations
+
+- **Simplified geometry.** The 5-parameter body family captures gross shape effects (nose, tail, taper) but not real-vehicle features like wheels, underbody detail, or surface curvature continuity.
+- **Mesh independence was verified on one design.** The convergence ladder used run_000; mesh error could differ elsewhere in the design space, particularly at extreme tail angles.
+- **No prism layers.** The mesh resolves pressure drag well but under-resolves wall friction, so absolute Cd values are likely biased low; comparisons *between* designs (the quantity the surrogate learns) are less affected.
+- **Two blind CFD validations.** Both landed within the model's uncertainty band, but two points is evidence, not proof, of accuracy everywhere in the design space.
+- **Single operating point.** All data is at 30 m/s, zero yaw, steady RANS — no crosswind, transient wake dynamics, or Reynolds sweep.
+
+Each of these is addressable with more compute: mesh checks at design-space corners, prism-layer meshing, more validation points, and multi-condition datasets.
+
 ## Repository guide
 
 | File | Role |
@@ -79,6 +89,7 @@ blind CFD validation — predicted Cd 0.0493 ± 0.0057, CFD gave 0.0470 ✓
 pip install -r requirements.txt
 # run all commands below from the repository root
 # Docker Desktop must be running
+# for the optimization step: export OPENAI_API_KEY=<your Gemini API key>
 
 python3 src/sample_designs.py            # generate the 120-design DoE
 python3 src/mesh_check.py                # (optional) mesh sensitivity, rung 1
