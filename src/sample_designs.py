@@ -20,7 +20,7 @@ from scipy.stats import qmc
 
 from geometry import BOUNDS, build_mesh, frontal_area
 
-SEED = 42          # fixed seed -> reproducible dataset (say this in interviews)
+SEED = 42          # fixed seed -> reproducible dataset
 
 
 def sample(n):

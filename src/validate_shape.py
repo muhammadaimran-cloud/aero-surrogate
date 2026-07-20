@@ -80,7 +80,7 @@ def main():
           f"({100*err/cd_cfd:.1f}% of CFD value)")
     print("within the model's own uncertainty band"
           if err <= 2 * cd_std else
-          "outside 2x the model's claimed uncertainty — interesting, tell Claude")
+          "outside 2x the model's claimed uncertainty — investigate before trusting")
 
 
 if __name__ == "__main__":

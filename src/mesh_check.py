@@ -50,4 +50,4 @@ if cd_coarse:
     print(f"\nCd difference: {diff:.1f}%")
     print("verdict:", "coarse mesh OK — run the batch"
           if diff < 5 else
-          "meaningful mesh dependence — talk to Claude before the batch")
+          "meaningful mesh dependence — do not run the batch on this mesh")

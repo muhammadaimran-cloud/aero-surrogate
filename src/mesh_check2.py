@@ -49,7 +49,7 @@ try:
     print(f"\nCd difference fine vs very-fine: {diff:.1f}%")
     print("verdict:", "FINE mesh validated — run `python3 run_batch.py`"
           if diff < 5 else
-          "still mesh-dependent — send this output to Claude")
+          "still mesh-dependent — refine further before running the batch")
 except RuntimeError:
     print("(couldn't find the fine-mesh result in cases/mesh_check — "
           "compare manually: fine Cd was 0.1036)")
