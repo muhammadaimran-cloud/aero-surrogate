@@ -100,4 +100,4 @@ Stack: Python, OpenFOAM v2412 (Docker), scikit-learn, trimesh, SciPy, OpenEvolve
 
 ---
 
-*Muhammad Abdullah Imran, Mechanical Engineering, CSULB. Part of a series of optimization projects (airfoil, bridge truss, bluff body, heat sink, 3D car body) built on the same OpenEvolve workflow.*
+*Muhammad Abdullah Imran, Mechanical Engineering, CSULB. Predecessor project: [car-aero-optimization](https://github.com/muhammadaimran-cloud/car-aero-optimization) — the same optimization loop with a hand-written physics surrogate instead of a CFD-trained model.*
